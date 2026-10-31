@@ -1,26 +1,26 @@
-# MAISON DULCE — Pastelería artesanal
+# MAISON DULCE ✳
 
-Demo comercial ficticia diseñada para el portafolio de **Aptitud Labs**.
+**Sitio público:** https://aldo200908-lgtm.github.io/Maison-Dulce-/
 
-🌐 **Sitio web:** https://aldo200908-lgtm.github.io/Maison-Dulce-/
+Una experiencia editorial e interactiva para una **pastelería ficticia**, creada como demostración de Aptitud Labs. La portada toma como referencia una web de productos flotantes: fondo claro, un gran círculo burdeos, tipografía sobre una curva y un carrusel cinético.
 
-## Características
+## Experiencia
 
-- Diseño adaptable a móviles y computadoras
-- Catálogo de cuatro tortas con precios de ejemplo en soles
-- Animaciones e interacciones
-- Selección de tortas y simulador de pedido sin transacciones reales
-- HTML, CSS y JavaScript estáticos, sin compilación
+- Seis tortas originales con fotografías aisladas sobre fondo transparente.
+- Portada en movimiento: carrusel automático, flechas, selección por clic, swipe en móvil y efecto de perspectiva con el puntero.
+- Catálogo de seis tortas con imágenes, descripción y precios ilustrativos.
+- Simulador de selección con porciones (8, 12 o 16), cantidades y cálculo del total.
+- Opción para copiar el resumen simulado; **no acepta pagos ni pedidos reales**.
+- Responsive, navegación móvil, atributos de accesibilidad y compatibilidad con `prefers-reduced-motion`.
 
-> **Aviso:** MAISON DULCE es una marca ficticia. Los precios son ilustrativos. No se reciben ni procesan pedidos reales. Algunas fotografías se cargan desde servidores externos.
+## Archivos
 
-## GitHub Pages
+- `index.html`: diseño, estilos e interacciones.
+- `assets.js`: seis fotografías originales optimizadas incrustadas como WebP (sin dependencias de servidores de fotografías).
+- `.github/workflows/pages.yml`: publicación automática en GitHub Pages.
 
-El archivo `.github/workflows/pages.yml` publica el repositorio desde `main`.
+## Publicación
 
-Si el despliegue falla por falta de habilitación de Pages:
-1. Abre **Settings → Pages**.
-2. En **Build and deployment → Source** selecciona **GitHub Actions**.
-3. Ve a **Actions → Publicar Maison Dulce en GitHub Pages → Run workflow**.
+Configura en **Settings → Pages → Build and deployment → Source: GitHub Actions**. Al actualizar `main`, el flujo **Publicar Maison Dulce en GitHub Pages** despliega la versión nueva.
 
-La dirección indicada es la URL esperada de GitHub Pages cuando el sitio quede desplegado.
+**Aviso:** MAISON DULCE es una marca ficticia. Los precios son ilustrativos y no representa una empresa real. Diseño de demostración por Aptitud Labs.
