@@ -22,6 +22,19 @@
 @media(max-width:880px){.topbar{height:86px;padding:0 24px}.navlink,.topbar__edition{display:none}.topbar__left{min-width:30px}.mobile-menu{display:grid;place-items:center;width:40px;height:40px;background:transparent;border:0}.mobile-links{display:none;position:absolute;top:83px;left:0;right:0;background:#f6f7f0f5;z-index:90;padding:18px 26px;box-shadow:0 16px 16px #30302012}.mobile-links.is-open{display:flex;flex-direction:column;gap:19px}.mobile-links a{font-weight:800;font-size:12px;letter-spacing:.13em}.hero{height:100svh;min-height:650px}.hero-eyebrow{top:107px}.hero-corner{display:none}.orbit{width:115vw;height:115vw;top:47%}.center-tag{top:35%}.hero-aside{bottom:51px;left:25px}.hero-aside__number{font-size:37px}.hero-switch{bottom:56px;right:24px;gap:6px}.hero-switch button{width:44px;height:44px}.hero-switch__info{display:none}.hero-actions{display:none}.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.story{gap:35px}.story-art{min-height:400px}.story-facts{flex-wrap:wrap;gap:15px}.site-footer{align-items:start}}
 @media(max-width:600px){.topbar{padding:0 17px}.brand__name{font-size:17px}.brand__symbol{font-size:23px}.brand__sub{font-size:6px}.hero{min-height:620px;height:100svh;max-height:900px}.hero-eyebrow{font-size:8px;top:112px;letter-spacing:.16em}.hero-eyebrow span{width:16px;margin:0 5px 2px}.orbit{width:166vw;height:166vw;top:52%;}.orbit:after{inset:15px}.orbit__lettering text{font-size:80px}.center-tag{top:35%;padding:7px 10px;font-size:8px}.hero-aside{bottom:34px;left:20px;gap:5px;color:#ffe5d8}.hero-aside__number{font-size:30px}.hero-aside__number small{color:#e9c2af;font-size:9px}.hero-aside__name{font-size:10px;max-width:160px;letter-spacing:.1em}.hero-aside__price{color:#f4c6b5;font-size:10px}.hero-switch{right:18px;bottom:34px}.hero-switch button{width:40px;height:40px}.hero-bottom-label{display:none}.ticker{padding:14px 0}.ticker span{font-size:12px}.page-section{padding:75px 18px}.section-header{display:block;margin-bottom:30px}.section-header h2,.story-copy h2,.final-cta h2{font-size:clamp(46px,11vw,65px)}.section-header p{margin-top:20px}.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:27px 11px}.product-card__visual{aspect-ratio:.96}.product-card__badge{font-size:7px;padding:6px 8px;top:9px;left:9px}.product-card__plus{bottom:10px;right:10px;width:33px;height:33px;font-size:18px}.product-card__meta{padding:14px 0 0;flex-wrap:wrap;gap:4px}.product-card__meta h3{font-size:18px}.product-card__meta p{font-size:10px}.product-card__meta strong{padding:0;font-size:11px}.story{grid-template-columns:1fr;gap:37px}.story-art{height:420px;min-height:0}.story-copy p{font-size:13px}.story-facts{margin-top:27px}.final-cta{padding:85px 24px}.site-footer{flex-direction:column}.site-footer__right{text-align:left}.modal{padding:19px}.modal__top h2{font-size:27px}.modal__details img{width:108px;height:108px}.modal__details strong{font-size:18px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.float-inner,.ticker__line,.hero-actions__scroll{animation:none!important}.float-item,.product-card__visual img,.drawer,.modal{transition-duration:.01ms!important}}
+/* V3: composited 3D motion. The camera depth and the spring are controlled in JS. */
+.product-stage{pointer-events:auto;touch-action:pan-y;perspective:1500px;perspective-origin:50% 48%;contain:layout style}
+.float-item{left:50%;top:50%;width:min(35vw,480px);height:auto;transform:none;transition:none;will-change:transform,opacity;backface-visibility:hidden;transform-style:preserve-3d;touch-action:pan-y;cursor:pointer;user-select:none;-webkit-user-select:none}
+.float-item img{pointer-events:none;backface-visibility:hidden;transform:translateZ(0);image-rendering:auto}
+.float-inner{transform:translateZ(0)}
+.hero-aside.is-shifting .hero-aside__name,.hero-aside.is-shifting .hero-aside__price{animation:meta-rise .45s cubic-bezier(.18,.78,.25,1) both}
+.hero-aside.is-shifting .hero-aside__price{animation-delay:.07s}
+@keyframes meta-rise{from{opacity:.55;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:880px){.float-item{width:min(51vw,410px)}}
+@media(max-width:600px){.float-item{width:min(83vw,430px)}.product-stage{perspective:1050px}.float-inner{animation-duration:6.5s!important}}
+@media(prefers-reduced-motion:reduce){.float-item,.float-inner{transition:none!important;animation:none!important}.hero-aside.is-shifting .hero-aside__name,.hero-aside.is-shifting .hero-aside__price{animation:none!important}}
+
+
 </style>
 </head>
 <body>
@@ -66,14 +79,185 @@ const cakes=[
  {name:'Pistacho de Autor',short:'Pistacho de autor',price:89,img:CAKE_IMAGES['pistacho'],desc:'Pistacho tostado, crema delicada y chocolate blanco.',tag:'De autor',bg:'#e2e8d0'},
  {name:'Frutos Rojos & Cacao',short:'Frutos rojos',price:82,img:CAKE_IMAGES['frutos-rojos'],desc:'Chocolate profundo, frambuesas y frutos del bosque.',tag:'Intensa',bg:'#e9d8d5'}
 ];
-const $=s=>document.querySelector(s);const $$=s=>Array.from(document.querySelectorAll(s));$('#storyCake').src=CAKE_IMAGES['pistacho'];const stage=$('#productStage');const catalog=$('#catalog');const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;let current=0,timer=null,modalIndex=0,items=[],lock=null,dragX=null,suppressClick=false;
-const slotsWide=[{x:50,y:57,w:'min(39vw, 490px)',r:-7,s:1,z:9,o:1},{x:21,y:51,w:'min(27vw, 330px)',r:-17,s:1,z:7,o:1},{x:80,y:55,w:'min(24vw, 300px)',r:17,s:1,z:7,o:1},{x:1,y:24,w:'min(18vw, 230px)',r:-20,s:1,z:5,o:.98},{x:100,y:21,w:'min(19vw, 240px)',r:22,s:1,z:5,o:.98},{x:9,y:85,w:'min(18vw, 225px)',r:9,s:1,z:3,o:.9}];
-const slotsMobile=[{x:50,y:57,w:'min(85vw, 420px)',r:-8,s:1,z:9,o:1},{x:1,y:46,w:'min(53vw, 270px)',r:-19,s:1,z:7,o:1},{x:104,y:48,w:'min(49vw, 250px)',r:16,s:1,z:7,o:1},{x:-13,y:23,w:'min(42vw, 190px)',r:-20,s:1,z:5,o:.94},{x:116,y:23,w:'min(40vw, 195px)',r:16,s:1,z:5,o:.94},{x:8,y:88,w:'min(38vw, 180px)',r:12,s:1,z:3,o:.78}];
-const floaters=cakes.map((c,i)=>{const btn=document.createElement('button');btn.className='float-item';btn.type='button';btn.setAttribute('aria-label','Mostrar '+c.name);btn.innerHTML='<span class="float-inner"><img src="'+c.img+'" alt="'+c.name+'" draggable="false" '+(i>2?'loading="lazy"':'')+'></span>';btn.style.setProperty('--bob',(4.3+i*.43)+'s');btn.style.setProperty('--delay',(-i*.7)+'s');btn.addEventListener('click',()=>{if(suppressClick)return;if(i===current)openQuick(i);else goTo(i)});stage.appendChild(btn);return btn});
-function drawStage(){const slots=window.innerWidth<=600?slotsMobile:slotsWide;floaters.forEach((el,i)=>{const slot=(i-current+cakes.length)%cakes.length;const p=slots[slot];el.dataset.slot=slot;el.style.setProperty('--x',p.x+'%');el.style.setProperty('--y',p.y+'%');el.style.setProperty('--size',p.w);el.style.setProperty('--rot',p.r+'deg');el.style.setProperty('--scale',p.s);el.style.setProperty('--layer',p.z);el.style.setProperty('--opacity',p.o);el.setAttribute('aria-current',slot===0?'true':'false');});$('#slideNumber').textContent=String(current+1).padStart(2,'0');$('#slideName').textContent=cakes[current].short;$('#slidePrice').textContent='Desde S/ '+cakes[current].price;$('#centerTag').textContent=['El favorito de todos','Un amor a primera vista','Para celebrar en grande','El clásico inolvidable','Un pequeño lujo','Intensamente especial'][current]}
-function goTo(i){current=(i+cakes.length)%cakes.length;drawStage();restart()}
-function restart(){if(timer)clearInterval(timer);if(!reduced&&!document.hidden&&!$('#overlay').classList.contains('is-open'))timer=setInterval(()=>{current=(current+1)%cakes.length;drawStage()},4900)}
-$('#prevCake').addEventListener('click',()=>goTo(current-1));$('#nextCake').addEventListener('click',()=>goTo(current+1));stage.addEventListener('pointerdown',e=>{dragX=e.clientX});stage.addEventListener('pointerup',e=>{if(dragX!==null&&Math.abs(e.clientX-dragX)>48){suppressClick=true;goTo(current+(e.clientX<dragX?1:-1));e.preventDefault();setTimeout(()=>suppressClick=false,0)}dragX=null});document.addEventListener('keydown',e=>{if($('#overlay').classList.contains('is-open')){if(e.key==='Escape')closePanels();return}if(['ArrowRight','ArrowLeft'].includes(e.key)&&window.scrollY<innerHeight*.8){e.preventDefault();goTo(current+(e.key==='ArrowRight'?1:-1))}});document.addEventListener('visibilitychange',restart);window.addEventListener('resize',drawStage,{passive:true});$('.hero').addEventListener('pointermove',e=>{if(reduced||e.pointerType==='touch')return;const dx=(e.clientX/window.innerWidth-.5)*8;const dy=(e.clientY/window.innerHeight-.5)*-6;const active=floaters[current];active.style.setProperty('--tilt-x',dy.toFixed(1)+'deg');active.style.setProperty('--tilt-y',dx.toFixed(1)+'deg')});$('.hero').addEventListener('pointerleave',()=>{floaters.forEach(f=>{f.style.setProperty('--tilt-x','0deg');f.style.setProperty('--tilt-y','0deg')})});$('.hero').addEventListener('mouseenter',()=>{if(timer)clearInterval(timer)});$('.hero').addEventListener('mouseleave',restart);drawStage();restart();
+const $=s=>document.querySelector(s);
+const $$=s=>Array.from(document.querySelectorAll(s));
+const hero=$('.hero'),stage=$('#productStage'),catalog=$('#catalog');
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let current=0,timer=null,modalIndex=0,items=[],suppressClick=false;
+
+// One continuous six-stop 3D path. The large central cake lives closest to the viewer.
+// Positions are relative to the hero, so resizing never changes the product order.
+const desktopPath=[
+ {x:50,y:57,s:1,z:150,rz:-5,ry:0,rx:0,o:1},
+ {x:79,y:54,s:.70,z:35,rz:11,ry:-14,rx:2,o:1},
+ {x:102,y:25,s:.44,z:-140,rz:18,ry:-25,rx:4,o:.89},
+ {x:50,y:14,s:.39,z:-220,rz:-4,ry:0,rx:5,o:.62},
+ {x:-2,y:25,s:.44,z:-140,rz:-18,ry:25,rx:4,o:.89},
+ {x:21,y:52,s:.72,z:35,rz:-14,ry:14,rx:2,o:1}
+];
+const mobilePath=[
+ {x:50,y:56,s:1,z:100,rz:-6,ry:0,rx:0,o:1},
+ {x:105,y:50,s:.55,z:15,rz:15,ry:-16,rx:1,o:.97},
+ {x:124,y:24,s:.34,z:-100,rz:18,ry:-22,rx:3,o:.75},
+ {x:50,y:18,s:.31,z:-160,rz:0,ry:0,rx:3,o:.45},
+ {x:-24,y:23,s:.34,z:-100,rz:-18,ry:22,rx:3,o:.75},
+ {x:-5,y:50,s:.57,z:15,rz:-14,ry:16,rx:1,o:.97}
+];
+const mod=(v,n)=>(v%n+n)%n;
+const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
+// Smooth circular Catmull-Rom interpolation avoids abrupt position/size changes.
+function sample(path,at,key){
+ const j=Math.floor(at),t=at-j,n=path.length;
+ const p0=path[mod(j-1,n)][key],p1=path[mod(j,n)][key];
+ const p2=path[mod(j+1,n)][key],p3=path[mod(j+2,n)][key];
+ return .5*((2*p1)+(-p0+p2)*t+(2*p0-5*p1+4*p2-p3)*t*t+(-p0+3*p1-3*p2+p3)*t*t*t);
+}
+let phase=0,visualTarget=0,velocity=0,raf=0,lastFrame=0,hovered=false,visible=true;
+let mouseX=0,mouseY=0,softX=0,softY=0;
+let gesture=null,autoPaused=false;
+const floaters=cakes.map((cake,i)=>{
+ const el=document.createElement('button');
+ el.type='button';el.className='float-item';el.setAttribute('aria-label','Mostrar '+cake.name);
+ el.innerHTML='<span class="float-inner"><img src="'+cake.img+'" alt="'+cake.name+'" draggable="false" '+(i<2?'fetchpriority="high"':'loading="eager"')+'></span>';
+ el.style.setProperty('--bob',(4.8+i*.38)+'s');
+ el.style.setProperty('--delay',(-i*.65)+'s');
+ el.addEventListener('click',()=>{
+  if(suppressClick)return;
+  if(i===current)openQuick(i);else goTo(i);
+ });
+ stage.appendChild(el);return el;
+});
+function renderStage(){
+ const path=window.innerWidth<=600?mobilePath:desktopPath;
+ const w=hero.clientWidth,h=hero.clientHeight;
+ const px=softX*(window.innerWidth<=600?4:16),py=softY*(window.innerWidth<=600?3:10);
+ floaters.forEach((el,i)=>{
+  const slot=mod(i-phase,cakes.length);
+  const x=sample(path,slot,'x'),y=sample(path,slot,'y');
+  const scale=clamp(sample(path,slot,'s'),.25,1.1);
+  const depth=sample(path,slot,'z');
+  const opacity=clamp(sample(path,slot,'o'),.35,1);
+  const importance=clamp((depth+220)/370,0,1);
+  const driftX=px*importance,driftY=py*importance;
+  const rotY=sample(path,slot,'ry')+softX*importance*7;
+  const rotX=sample(path,slot,'rx')-softY*importance*5;
+  // Transform-only animation stays on compositor; no animated left/top/width.
+  el.style.transform=`translate3d(-50%,-50%,0) translate3d(${((x-50)*w/100+driftX).toFixed(2)}px,${((y-50)*h/100+driftY).toFixed(2)}px,${depth.toFixed(1)}px) rotateZ(${sample(path,slot,'rz').toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) rotateX(${rotX.toFixed(2)}deg) scale(${scale.toFixed(4)})`;
+  el.style.opacity=opacity.toFixed(3);
+  el.style.zIndex=String(10+Math.round(depth+250));
+  const nearest=Math.round(slot)%cakes.length;
+  el.dataset.slot=String(nearest);
+  el.setAttribute('aria-current',i===current?'true':'false');
+ });
+}
+function frame(time){
+ raf=0;
+ if(!visible||document.hidden||$('#overlay').classList.contains('is-open'))return;
+ const dt=lastFrame?Math.min((time-lastFrame)/1000,.034):.016;
+ lastFrame=time;
+ if(reduced){phase=visualTarget;velocity=0;softX=softY=0}
+ else{
+  // Damped spring: responsive start, natural inertia and a subtle final settle.
+  const delta=visualTarget-phase;
+  const acceleration=105*delta-18*velocity;
+  velocity=clamp(velocity+acceleration*dt,-7,7);
+  phase+=velocity*dt;
+  softX+=(mouseX-softX)*Math.min(1,dt*7);
+  softY+=(mouseY-softY)*Math.min(1,dt*7);
+  if(!gesture&&Math.abs(visualTarget-phase)<.0005&&Math.abs(velocity)<.003){phase=visualTarget;velocity=0}
+ }
+ renderStage();
+ const moving=Math.abs(visualTarget-phase)>.0005||Math.abs(velocity)>.003;
+ const pointing=Math.abs(mouseX-softX)>.003||Math.abs(mouseY-softY)>.003;
+ if(!reduced&&(moving||pointing||gesture))requestFrame();
+}
+function requestFrame(){if(!raf)raf=requestAnimationFrame(frame)}
+function updateLabels(){
+ $('#slideNumber').textContent=String(current+1).padStart(2,'0');
+ $('#slideName').textContent=cakes[current].short;
+ $('#slidePrice').textContent='Desde S/ '+cakes[current].price;
+ $('#centerTag').textContent=['El favorito de todos','Un amor a primera vista','Para celebrar en grande','El clásico inolvidable','Un pequeño lujo','Intensamente especial'][current];
+ const aside=$('.hero-aside');aside.classList.remove('is-shifting');void aside.offsetWidth;aside.classList.add('is-shifting');
+}
+function goTo(index,options={}){
+ const next=mod(index,cakes.length);
+ // Choose the shortest distance when selecting a cake, but preserve arrow direction.
+ let steps=next-current;
+ if(options.direction)steps=options.direction;
+ else if(steps>cakes.length/2)steps-=cakes.length;
+ else if(steps< -cakes.length/2)steps+=cakes.length;
+ current=next;
+ visualTarget=Math.round(visualTarget)+steps;
+ if(reduced){phase=visualTarget;velocity=0;renderStage()}else requestFrame();
+ updateLabels();restart();
+}
+function pauseAutoplay(){clearInterval(timer);timer=null}
+function restart(){
+ pauseAutoplay();
+ if(!reduced&&!document.hidden&&visible&&!hovered&&!autoPaused&&!$('#overlay').classList.contains('is-open')){
+  timer=setInterval(()=>goTo(current+1,{direction:1}),5500);
+ }
+}
+$('#prevCake').addEventListener('click',()=>goTo(current-1,{direction:-1}));
+$('#nextCake').addEventListener('click',()=>goTo(current+1,{direction:1}));
+// Pointer drag follows the finger/mouse, then settles on the nearest stop.
+stage.addEventListener('pointerdown',e=>{
+ if(e.button!==0||$('#overlay').classList.contains('is-open'))return;
+ gesture={id:e.pointerId,startX:e.clientX,startY:e.clientY,startTarget:Math.round(visualTarget),lastX:e.clientX,lastT:performance.now(),speed:0,dragging:false,cancelled:false};
+ pauseAutoplay();
+});
+window.addEventListener('pointermove',e=>{
+ if(!gesture||e.pointerId!==gesture.id||gesture.cancelled)return;
+ const dx=e.clientX-gesture.startX,dy=e.clientY-gesture.startY;
+ if(!gesture.dragging&&Math.abs(dy)>Math.abs(dx)+10){gesture.cancelled=true;return}
+ if(Math.abs(dx)>9&&Math.abs(dx)>Math.abs(dy))gesture.dragging=true;
+ if(!gesture.dragging)return;
+ if(e.cancelable&&e.pointerType==='mouse')e.preventDefault();
+ const now=performance.now(),ms=now-gesture.lastT;
+ if(ms>0){gesture.speed=.7*gesture.speed+.3*((e.clientX-gesture.lastX)/ms);gesture.lastX=e.clientX;gesture.lastT=now}
+ const dragUnits=clamp(-dx/(stage.clientWidth*.46),-1.5,1.5);
+ visualTarget=gesture.startTarget+dragUnits;
+ requestFrame();
+},{passive:false});
+function finishDrag(e,cancelled=false){
+ if(!gesture||e.pointerId!==gesture.id)return;
+ const g=gesture;gesture=null;
+ if(g.dragging&&!cancelled){
+  const moved=e.clientX-g.startX;
+  const fling=clamp(-g.speed*135/stage.clientWidth,-.6,.6);
+  let steps=Math.round(clamp(-moved/(stage.clientWidth*.46)+fling,-2,2));
+  if(steps===0&&Math.abs(moved)>42)steps=moved<0?1:-1;
+  if(steps!==0){
+   suppressClick=true;setTimeout(()=>suppressClick=false,100);
+   visualTarget=g.startTarget;goTo(current+steps,{direction:steps});
+  }else visualTarget=g.startTarget;
+ }else visualTarget=g.startTarget;
+ requestFrame();restart();
+}
+window.addEventListener('pointerup',e=>finishDrag(e));
+window.addEventListener('pointercancel',e=>finishDrag(e,true));
+hero.addEventListener('pointermove',e=>{
+ if(e.pointerType!=='mouse'||gesture)return;
+ const rect=hero.getBoundingClientRect();
+ mouseX=clamp(((e.clientX-rect.left)/rect.width-.5)*2,-1,1);
+ mouseY=clamp(((e.clientY-rect.top)/rect.height-.5)*2,-1,1);
+ requestFrame();
+},{passive:true});
+hero.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hovered=true;pauseAutoplay()}});
+hero.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){hovered=false;mouseX=mouseY=0;requestFrame();restart()}});
+document.addEventListener('keydown',e=>{
+ if($('#overlay').classList.contains('is-open')){if(e.key==='Escape')closePanels();return}
+ if(['ArrowRight','ArrowLeft'].includes(e.key)&&window.scrollY<innerHeight*.8){
+  e.preventDefault();const direction=e.key==='ArrowRight'?1:-1;goTo(current+direction,{direction});
+ }
+});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){pauseAutoplay();cancelAnimationFrame(raf);raf=0;lastFrame=0}else{requestFrame();restart()}});
+window.addEventListener('resize',()=>{lastFrame=0;renderStage();requestFrame()},{passive:true});
+if('IntersectionObserver' in window){new IntersectionObserver(([entry])=>{
+ visible=entry.isIntersecting;if(visible){lastFrame=0;requestFrame();restart()}else{pauseAutoplay();cancelAnimationFrame(raf);raf=0}
+},{threshold:0}).observe(hero)}
+// Initial state: no entrance jump, and no motion when reduced motion is requested.
+updateLabels();renderStage();requestFrame();restart();
 catalog.innerHTML=cakes.map((c,i)=>`<article class="product-card"><div class="product-card__visual" style="--surface:${c.bg}"><span class="product-card__badge">${c.tag}</span><img src="${c.img}" loading="lazy" alt="Torta ${c.name}"/><button type="button" class="product-card__plus" aria-label="Elegir ${c.name}" data-cake="${i}">+</button></div><div class="product-card__meta"><div><h3>${c.name}</h3><p>${c.desc}</p></div><strong>Desde S/ ${c.price}</strong></div></article>`).join('');catalog.addEventListener('click',e=>{const b=e.target.closest('[data-cake]');if(b)openQuick(Number(b.dataset.cake))});
 let previousFocus=null;const overlay=$('#overlay'),drawer=$('#cartDrawer'),modal=$('#quickModal');function showOverlay(){overlay.classList.add('is-open');overlay.setAttribute('aria-hidden','false');if(timer)clearInterval(timer);document.body.style.overflow='hidden'}function closePanels(){overlay.classList.remove('is-open');overlay.setAttribute('aria-hidden','true');drawer.classList.remove('is-open');drawer.setAttribute('aria-hidden','true');modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';restart();previousFocus?.focus?.()}
 function openCart(){previousFocus=document.activeElement;modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');showOverlay();drawer.classList.add('is-open');drawer.setAttribute('aria-hidden','false');renderCart();$('#cartClose').focus()}
