@@ -74,6 +74,71 @@
 @media(prefers-reduced-motion:reduce){.detail-modal,.detail-modal *{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
 
+/* Maison Dulce 6.0 — Editorial brand story, isolated from hero and catalogue */
+.story.story-v6{display:block;position:relative;isolation:isolate;overflow:clip;padding:0;background:#f4ece2;color:#512d2a;}
+.story-v6__topline{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:0 clamp(20px,5.8vw,96px);padding:26px 0;border-bottom:1px solid #bfa99b79;font:700 10px/1.5 'Manrope','DM Sans',sans-serif;letter-spacing:.21em;color:#7d5e57;}
+.story-v6__asterisk{color:#a14f56;font-size:14px;margin:0 8px;}
+.story-v6__intro{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);min-height:690px;align-items:stretch;gap:clamp(18px,4vw,80px);padding:clamp(48px,6vw,100px) clamp(20px,5.8vw,96px) clamp(76px,7vw,120px);}
+.story-v6__lead{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;position:relative;z-index:2;max-width:600px;}
+.story-v6__eyebrow{display:flex;align-items:center;gap:10px;font:800 10px/1.4 'Manrope','DM Sans',sans-serif;letter-spacing:.16em;color:#9d5150;margin-bottom:32px;}
+.story-v6__eyebrow>span:last-child{font-size:13px;color:#c39385;}.story-v6__eyebrow-line{width:28px;height:1px;background:#a45b58;}
+.story-v6__lead h2{font:500 clamp(65px,7.2vw,120px)/.95 'Playfair Display',serif;letter-spacing:-.078em;margin:0 0 38px;color:#602d30;}
+.story-v6__lead h2 em{color:#b05f63;font-weight:500;letter-spacing:-.065em;}
+.story-v6__lead-text{max-width:470px;font:500 clamp(16px,1.45vw,19px)/1.65 'DM Sans',sans-serif;margin:0 0 14px;color:#65423c;}
+.story-v6__lead-secondary{max-width:450px;font:400 13px/1.9 'DM Sans',sans-serif;color:#866a61;margin:0 0 36px;}
+.story-v6__link{display:inline-flex;align-items:center;justify-content:space-between;gap:30px;border-bottom:1px solid #9b5257;padding:0 0 12px;color:#752f3d;font:800 10px/1.5 'Manrope',sans-serif;letter-spacing:.145em;transition:gap .25s,color .25s;}
+.story-v6__link:hover{gap:42px;color:#bf5361;}.story-v6__link-arrow{font-size:21px;font-weight:400;line-height:1;}
+.story-v6__lead-footnote{font:700 9px/1.5 'Manrope',sans-serif;color:#9b7e71;letter-spacing:.18em;margin-top:68px;}
+.story-v6__art{position:relative;min-height:610px;display:grid;place-items:center;overflow:visible;isolation:isolate;}
+.story-v6__art-disc{position:absolute;left:6%;right:6%;top:6%;bottom:5%;background:radial-gradient(circle at 38% 28%,#bd6470 0%,#9a3c4d 47%,#712b3e 100%);border-radius:48% 48% 44% 44% / 46% 46% 50% 50%;transform:rotate(-12deg);box-shadow:inset 0 0 0 1px #ffdcc923,0 22px 65px #4f1c2b25;}
+.story-v6__art-disc:after{content:'';position:absolute;inset:6%;border:1px solid #ffd3b358;border-radius:50%;}
+.story-v6__art-outline{position:absolute;left:-1%;top:-12%;font:500 clamp(220px,31vw,570px)/1 'Playfair Display',serif;color:#f9e8d014;pointer-events:none;z-index:0;}
+.story-v6__art-tiny{position:absolute;top:8%;right:8%;font-size:52px;color:#edb3a3;z-index:3;transform:rotate(-15deg);}
+.story-v6__cake-main{position:absolute;width:min(112%,760px);max-width:none;object-fit:contain;z-index:2;filter:drop-shadow(0 38px 23px #3d152865);transform:translate3d(0,var(--story-cake-shift,0px),0) rotate(-8deg);will-change:transform;}
+.story-v6__cake-accent{position:absolute;width:clamp(140px,32%,260px);right:-8%;bottom:1%;z-index:3;filter:drop-shadow(0 16px 16px #40202255);transform:rotate(13deg);}
+.story-v6__art-orbit{position:absolute;width:18%;aspect-ratio:1;border:1px solid #f5d4beaa;border-radius:50%;top:-1%;left:2%;display:grid;place-items:center;color:#9c5360;transform:rotate(20deg);}.story-v6__art-orbit span{font-size:clamp(23px,3vw,43px);}
+.story-v6__art-vertical{position:absolute;top:21%;right:-11%;writing-mode:vertical-rl;color:#926967;font:800 9px 'Manrope',sans-serif;letter-spacing:.27em;}
+.story-v6__art-note{position:absolute;z-index:4;left:-3%;bottom:6%;background:#fff8ee;padding:17px 22px;box-shadow:0 14px 34px #512a2324;display:flex;flex-direction:column;gap:4px;transform:rotate(-5deg);}
+.story-v6__art-note span{font:800 8px 'Manrope',sans-serif;letter-spacing:.17em;color:#99575a;}.story-v6__art-note i{font:italic 23px 'Playfair Display',serif;color:#5b3132;}
+.story-v6__quote{position:relative;overflow:hidden;display:flex;align-items:center;flex-direction:column;justify-content:center;text-align:center;min-height:360px;padding:75px 22px 64px;background:#682636;color:#f8e5d8;}
+.story-v6__quote:before,.story-v6__quote:after{content:'';position:absolute;width:440px;height:440px;border:1px solid #f3b69a2c;border-radius:50%;top:-70%;left:-160px;}.story-v6__quote:after{left:auto;right:-140px;top:15%;width:340px;height:340px;}
+.story-v6__quote-emblem{font-size:28px;color:#f7bb9e;margin-bottom:18px;}
+.story-v6__quote p{position:relative;z-index:1;font:400 clamp(27px,3.7vw,53px)/1.25 'Playfair Display',serif;letter-spacing:-.042em;margin:0 0 32px;}.story-v6__quote p em{color:#f4ac9e;}
+.story-v6__quote>span{font:700 9px 'Manrope',sans-serif;letter-spacing:.26em;color:#e6b7a9;}
+.story-v6__journey{padding:clamp(84px,9vw,132px) clamp(20px,5.8vw,96px) clamp(80px,8vw,110px);}
+.story-v6__journey-header{display:flex;align-items:end;justify-content:space-between;gap:38px;margin-bottom:52px;}
+.story-v6__journey-label{display:block;font:800 10px 'Manrope',sans-serif;letter-spacing:.18em;color:#a45f5b;margin-bottom:19px;}
+.story-v6__journey-header h3{font:500 clamp(42px,5vw,76px)/1.09 'Playfair Display',serif;letter-spacing:-.058em;color:#602d30;max-width:760px;margin:0;}
+.story-v6__journey-header h3 em{color:#af5963;}.story-v6__journey-header p{font-size:13px;line-height:1.9;color:#82665e;max-width:315px;margin:0 0 4px;}
+.story-v6__cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(15px,2vw,28px);}
+.story-v6__card{min-width:0;display:flex;flex-direction:column;}
+.story-v6__card-art{position:relative;aspect-ratio:1/1.04;display:grid;place-items:center;overflow:hidden;isolation:isolate;background:#d9c7bb;}
+.story-v6__card-art--choc{background:linear-gradient(145deg,#ceb7a8,#e8dcd1)}.story-v6__card-art--berry{background:linear-gradient(145deg,#dcc2c3,#f0dfd5)}.story-v6__card-art--velvet{background:linear-gradient(145deg,#e3bbc0,#e5c9bb)}
+.story-v6__card-num{position:absolute;z-index:4;top:24px;left:24px;color:#6d4640;font:800 9px 'Manrope',sans-serif;letter-spacing:.17em;}
+.story-v6__card-circle{position:absolute;width:77%;aspect-ratio:1;border-radius:50%;background:#f8e5d788;transform:translateY(11%);}
+.story-v6__card-art img{position:relative;width:102%;height:105%;object-fit:contain;max-width:none;filter:drop-shadow(0 21px 17px #5b323339);transform:translateY(3%) rotate(-4deg) scale(.94);transition:transform .8s cubic-bezier(.18,.79,.2,1),filter .8s;z-index:2;}
+.story-v6__card:hover .story-v6__card-art img{transform:translateY(-3%) rotate(2deg) scale(1.05);filter:drop-shadow(0 30px 19px #5b32334d);}
+.story-v6__card-copy{display:flex;flex:1;flex-direction:column;align-items:flex-start;padding:31px 7px 12px;border-top:1px solid #ab867d5e;}
+.story-v6__card-kicker{width:100%;display:flex;justify-content:space-between;font:800 9px 'Manrope',sans-serif;letter-spacing:.16em;color:#995653;}
+.story-v6__card-kicker span{font-size:18px;}.story-v6__card-copy h4{font:500 clamp(28px,3vw,44px)/1.13 'Playfair Display',serif;letter-spacing:-.05em;color:#593036;margin:18px 0 13px;}.story-v6__card-copy h4 em{color:#b1676b;}
+.story-v6__card-copy p{font-size:12px;line-height:1.95;color:#846a61;max-width:360px;margin:0 0 27px;}
+.story-v6__card-copy button{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:40px;border:0;border-bottom:1px solid #bd9b93;background:transparent;padding:7px 0;color:#732f3c;font:800 9px 'Manrope',sans-serif;letter-spacing:.1em;text-align:left;transition:color .2s,gap .2s;}
+.story-v6__card-copy button:hover{color:#b14f5b;gap:25px;}.story-v6__card-copy button span{font-size:19px;font-weight:400;}
+.story-v6__bottom{margin:0 clamp(20px,5.8vw,96px);display:flex;align-items:center;justify-content:space-between;gap:24px;border-top:1px solid #cdbbb0;padding:32px 0 30px;}
+.story-v6__bottom>span{font:800 9px 'Manrope',sans-serif;letter-spacing:.17em;color:#9a6b5b;white-space:nowrap;}.story-v6__bottom p{font:italic 22px 'Playfair Display',serif;color:#865d57;margin:0;}.story-v6__bottom a{font:800 10px 'Manrope',sans-serif;letter-spacing:.12em;color:#6f2936;white-space:nowrap;border-bottom:1px solid #a96a65;padding-bottom:9px;}.story-v6__bottom a span{font-size:18px;margin-left:10px;}
+.story-v6__demo-note{color:#8a766f;font:400 10px/1.65 'DM Sans',sans-serif;margin:0;text-align:center;padding:0 20px 27px;}
+/* Reveal enhancement, content stays visible when scripts are unavailable. */
+.story-v6.story-motion-ready [data-story-reveal]{opacity:0;transform:translate3d(0,26px,0);transition:transform .85s cubic-bezier(.22,.8,.18,1),opacity .85s ease;}
+.story-v6.story-motion-ready [data-story-reveal].is-visible{opacity:1;transform:translate3d(0,0,0);}
+.story-v6.story-motion-ready .story-v6__cards [data-story-reveal]:nth-child(2){transition-delay:.09s;}.story-v6.story-motion-ready .story-v6__cards [data-story-reveal]:nth-child(3){transition-delay:.18s;}
+@media(max-width:1050px){.story-v6__intro{min-height:600px;gap:20px;}.story-v6__lead h2{font-size:clamp(64px,7.6vw,92px);}.story-v6__art{min-height:510px;}.story-v6__art-vertical{right:-6%;}.story-v6__bottom p{font-size:18px;}.story-v6__card-copy h4{font-size:clamp(29px,3vw,38px);}}
+@media(max-width:760px){.story-v6__topline{font-size:8px;margin:0 22px;padding:22px 0;}.story-v6__topline>span:last-child{display:none;}.story-v6__intro{grid-template-columns:1fr;gap:14px;padding:64px 22px 74px;}.story-v6__lead{max-width:640px;}.story-v6__lead h2{font-size:clamp(64px,12vw,102px);margin-bottom:27px;}.story-v6__lead-secondary{margin-bottom:25px;}.story-v6__lead-footnote{margin-top:40px;}.story-v6__art{min-height:600px;}.story-v6__cake-main{width:min(93%,710px);}.story-v6__cake-accent{right:0;bottom:3%;}.story-v6__art-note{left:3%;}.story-v6__art-vertical{right:1%;}.story-v6__journey{padding:75px 22px;}.story-v6__journey-header{display:block;margin-bottom:33px;}.story-v6__journey-header p{margin-top:22px;}.story-v6__cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 16px;}.story-v6__card-copy h4{font-size:35px;}.story-v6__bottom{flex-wrap:wrap;margin:0 22px;}.story-v6__bottom p{order:3;flex-basis:100%;}.story-v6__card:last-child{grid-column:1/-1;max-width:calc(50% - 8px);margin:auto;}}
+@media(max-width:540px){.story-v6__topline{margin:0 18px;}.story-v6__intro{padding:56px 18px 56px;}.story-v6__eyebrow{font-size:8px;gap:8px;margin-bottom:26px;letter-spacing:.12em;}.story-v6__eyebrow-line{width:20px;}.story-v6__lead h2{font-size:clamp(57px,14.1vw,85px);margin-bottom:23px;}.story-v6__lead-text{font-size:15px;}.story-v6__lead-secondary{font-size:12px;}.story-v6__link{font-size:9px;gap:16px;}.story-v6__art{min-height:390px;margin:12px 0 0;}.story-v6__art-disc{left:4%;right:4%;top:4%;bottom:4%;}.story-v6__cake-main{width:112%;}.story-v6__cake-accent{width:32%;right:-4%;bottom:0;}.story-v6__art-orbit{left:-1%;}.story-v6__art-note{bottom:0;left:-1%;padding:10px 12px;}.story-v6__art-note span{font-size:6px;}.story-v6__art-note i{font-size:17px;}.story-v6__art-vertical{font-size:7px;right:-3%;}.story-v6__art-tiny{font-size:33px;right:7%;top:3%;}.story-v6__quote{min-height:292px;padding:55px 18px;}.story-v6__quote p{font-size:clamp(25px,7.1vw,37px);}.story-v6__quote>span{font-size:7px;letter-spacing:.17em;}.story-v6__journey{padding:68px 18px 54px;}.story-v6__journey-header h3{font-size:clamp(42px,11vw,57px);}.story-v6__journey-header p{font-size:12px;}.story-v6__cards{grid-template-columns:1fr;gap:48px;}.story-v6__card:last-child{grid-column:auto;max-width:none;margin:0;}.story-v6__card-art{aspect-ratio:1.14;}.story-v6__card-art img{width:90%;height:105%;}.story-v6__card-copy{padding:22px 3px 0;}.story-v6__card-copy h4{font-size:40px;}.story-v6__card-copy p{font-size:12px;}.story-v6__bottom{margin:0 18px;padding:24px 0;}.story-v6__bottom>span{font-size:8px;}.story-v6__bottom p{font-size:20px;}.story-v6__bottom a{font-size:9px;}.story-v6__demo-note{font-size:9px;padding:0 18px 24px;}}
+@media(prefers-reduced-motion:reduce){.story-v6.story-motion-ready [data-story-reveal]{opacity:1!important;transform:none!important;transition:none!important;}.story-v6__card-art img,.story-v6__link{transition:none!important;}.story-v6__cake-main{transform:rotate(-8deg)!important;will-change:auto;}}
+
+
+/* Small-screen safety: keep the visual composition below the narrative copy. */
+@media(max-width:540px){.story-v6__cake-accent{display:none}.story-v6__art{overflow:hidden;border-radius:50% 50% 8px 8px}.story-v6__art-note{left:4%;bottom:5%}.story-v6__art-disc{top:11%;bottom:12%;left:6%;right:6%}.story-v6__cake-main{width:104%;max-width:none}.story-v6__art-vertical{right:4%;top:27%}}
 </style>
 <style>
 /* MAISON DULCE — THE COLLECTION / editorial catalog 4.0 */
@@ -227,7 +292,75 @@
   <div class="collection-endcap"><div><span>Hecho para momentos que importan</span><strong>Un pedacito de felicidad,<br>en cada celebración.</strong></div><span class="collection-endcap__mark" aria-hidden="true">✳</span></div>
   <p class="subtle">Concepto de portafolio de Aptitud Labs · Marca y precios ficticios · No se procesan pedidos reales</p>
 </section>
-<section class="page-section story" id="historia"><div class="story-art"><div class="story-art__sun"></div><img src="assets/pistacho-640.webp" srcset="assets/pistacho-640.webp 640w, assets/pistacho-1254.webp 1254w" sizes="(max-width: 650px) 90vw, 43vw" width="1254" height="1254" id="storyCake" alt="Torta artesanal de pistacho con crema y trozos de pistacho" decoding="async" loading="lazy"/><span class="story-art__stamp">Del horno al corazón.</span></div><div class="story-copy"><div class="kicker">Nuestra esencia</div><h2>El ingrediente<br/>secreto es <em>sentir.</em></h2><p>Imaginamos una pastelería donde cada torta cuenta una historia y cada detalle importa. Combinamos sabores que abrazan, colores que inspiran y una experiencia digital tan especial como la primera mordida.</p><p>Maison Dulce es un concepto ficticio desarrollado para demostrar cómo una marca gastronómica puede transmitir emoción a través de una web.</p><a class="outline-button" href="#coleccion">Explorar tortas <span aria-hidden="true">↗</span></a><div class="story-facts"><div><b>01.</b>Sabores con personalidad</div><div><b>02.</b>Diseño para recordar</div><div><b>03.</b>Momentos para compartir</div></div></div></section>
+<section class="story story-v6" id="historia" aria-labelledby="storyHeadline">
+  <div class="story-v6__topline" data-story-reveal>
+    <span>MAISON DULCE <span class="story-v6__asterisk" aria-hidden="true">✳</span> EL UNIVERSO</span>
+    <span>UN PEQUEÑO MANIFIESTO / 01—03</span>
+  </div>
+  <div class="story-v6__intro">
+    <div class="story-v6__lead" data-story-reveal>
+      <div class="story-v6__eyebrow"><span class="story-v6__eyebrow-line"></span> NUESTRA ESENCIA <span>·</span> LA HISTORIA DETRÁS DEL DULCE</div>
+      <h2 id="storyHeadline">El arte de<br>hacer <em>sentir.</em></h2>
+      <p class="story-v6__lead-text">Hay momentos que merecen algo más que una torta. Merecen un detalle capaz de transformar un día cualquiera en una historia para recordar.</p>
+      <p class="story-v6__lead-secondary">Así imaginamos Maison Dulce: una pastelería de autor donde el sabor, la estética y la emoción se encuentran en cada creación.</p>
+      <a class="story-v6__link" href="#coleccion"><span>DESCUBRE NUESTRAS CREACIONES</span><span class="story-v6__link-arrow" aria-hidden="true">↗</span></a>
+      <span class="story-v6__lead-footnote">ESTUDIO CONCEPTUAL · APTITUD LABS</span>
+    </div>
+    <div class="story-v6__art" aria-label="Composición artística de tortas artesanales de pistacho y fresas" data-story-reveal>
+      <div class="story-v6__art-disc" aria-hidden="true"></div>
+      <span class="story-v6__art-tiny" aria-hidden="true">✳</span>
+      <span class="story-v6__art-outline" aria-hidden="true">M</span>
+      <img class="story-v6__cake-main" id="storyMainCake" src="assets/pistacho-1254.webp" srcset="assets/pistacho-640.webp 640w, assets/pistacho-1254.webp 1254w" sizes="(max-width:650px) 86vw, 48vw" width="1254" height="1254" decoding="async" loading="lazy" alt="Torta de pistacho con crema, chocolate blanco y pistachos tostados" />
+      <img class="story-v6__cake-accent" src="assets/fresas-640.webp" width="640" height="640" decoding="async" loading="lazy" alt="" aria-hidden="true" />
+      <div class="story-v6__art-orbit" aria-hidden="true"><span>✦</span></div>
+      <div class="story-v6__art-note"><span>DETRÁS DE CADA CAPA</span><i>hay algo que celebrar</i></div>
+      <div class="story-v6__art-vertical" aria-hidden="true">CREADO PARA CELEBRAR · 2026</div>
+    </div>
+  </div>
+  <div class="story-v6__quote" data-story-reveal>
+    <div class="story-v6__quote-emblem" aria-hidden="true">✳</div>
+    <p>Lo dulce se disfruta un instante.<br><em>Lo especial permanece.</em></p>
+    <span>MAISON DULCE — EL ARTE DE CELEBRAR</span>
+  </div>
+  <div class="story-v6__journey">
+    <div class="story-v6__journey-header" data-story-reveal>
+      <div><span class="story-v6__journey-label">DETALLES QUE HACEN LA DIFERENCIA</span><h3>Una historia en <em>tres sabores.</em></h3></div>
+      <p>Cada creación nace de una idea sencilla: hacer que una ocasión, grande o pequeña, se sienta inolvidable.</p>
+    </div>
+    <div class="story-v6__cards">
+      <article class="story-v6__card" data-story-reveal>
+        <div class="story-v6__card-art story-v6__card-art--choc">
+          <span class="story-v6__card-num">01 / LA INSPIRACIÓN</span>
+          <span class="story-v6__card-circle" aria-hidden="true"></span>
+          <img src="assets/chocolate-1254.webp" srcset="assets/chocolate-640.webp 640w, assets/chocolate-1254.webp 1254w" sizes="(max-width:700px) 91vw, 29vw" width="1254" height="1254" loading="lazy" decoding="async" alt="Torta de chocolate con ganache y fresas frescas" />
+        </div>
+        <div class="story-v6__card-copy"><div class="story-v6__card-kicker">LO QUE NOS INSPIRA <span aria-hidden="true">✳</span></div><h4>Empieza con<br><em>un antojo.</em></h4><p>Un sabor conocido, una combinación inesperada, un recuerdo de infancia. Las mejores ideas empiezan así.</p><button type="button" data-story-cake="0">CONOCE CHOCOLATE INTENSO <span aria-hidden="true">↗</span></button></div>
+      </article>
+      <article class="story-v6__card" data-story-reveal>
+        <div class="story-v6__card-art story-v6__card-art--berry">
+          <span class="story-v6__card-num">02 / EL DETALLE</span>
+          <span class="story-v6__card-circle" aria-hidden="true"></span>
+          <img src="assets/fresas-1254.webp" srcset="assets/fresas-640.webp 640w, assets/fresas-1254.webp 1254w" sizes="(max-width:700px) 91vw, 29vw" width="1254" height="1254" loading="lazy" decoding="async" alt="Torta artesanal de vainilla con fresas y crema" />
+        </div>
+        <div class="story-v6__card-copy"><div class="story-v6__card-kicker">TODO CUENTA <span aria-hidden="true">✳</span></div><h4>Hecho para<br><em>enamorar.</em></h4><p>Capas, texturas y pequeños contrastes. Cada detalle visual está pensado para despertar los sentidos.</p><button type="button" data-story-cake="1">CONOCE FRESAS & VAINILLA <span aria-hidden="true">↗</span></button></div>
+      </article>
+      <article class="story-v6__card" data-story-reveal>
+        <div class="story-v6__card-art story-v6__card-art--velvet">
+          <span class="story-v6__card-num">03 / EL RECUERDO</span>
+          <span class="story-v6__card-circle" aria-hidden="true"></span>
+          <img src="assets/red-velvet-1254.webp" srcset="assets/red-velvet-640.webp 640w, assets/red-velvet-1254.webp 1254w" sizes="(max-width:700px) 91vw, 29vw" width="1254" height="1254" loading="lazy" decoding="async" alt="Torta Red Velvet con crema y migas rojas" />
+        </div>
+        <div class="story-v6__card-copy"><div class="story-v6__card-kicker">EL MOMENTO FINAL <span aria-hidden="true">✳</span></div><h4>Creado para<br><em>compartir.</em></h4><p>Porque hay celebraciones que no se miden en velas, sino en las personas con las que las vivimos.</p><button type="button" data-story-cake="2">CONOCE RED VELVET <span aria-hidden="true">↗</span></button></div>
+      </article>
+    </div>
+  </div>
+  <div class="story-v6__bottom" data-story-reveal>
+    <span>✳ MAISON DULCE — PASTELERÍA DE AUTOR</span>
+    <p>Un universo imaginado para inspirar momentos reales.</p>
+    <a href="#coleccion" aria-label="Volver a la colección de tortas">VER LA COLECCIÓN <span aria-hidden="true">↗</span></a>
+  </div>
+  <p class="story-v6__demo-note">Maison Dulce es una marca ficticia y una experiencia de portafolio de Aptitud Labs. Las imágenes representan productos conceptuales.</p>
+</section>
 <section class="final-cta" id="pedidos"><div class="kicker">El siguiente momento es tuyo</div><h2>La vida sabe mejor<br/>con un poco de <em>dulce.</em></h2><button type="button" class="light-button" id="exploreButton">Elegir una torta ↗</button></section>
 </main>
 <footer class="site-footer"><div><strong>Maison Dulce ✳</strong><br/>Pastelería de autor · Marca ficticia</div><div class="site-footer__right">Proyecto conceptual de <a href="https://aptitudlabs.com" target="_blank" rel="noopener noreferrer">Aptitud Labs</a>. Productos, precios y pedidos son simulaciones; no es una pastelería real.</div></footer>
@@ -665,6 +798,52 @@ window.MAISON_CAKES=cakes;window.MAISON_OPEN_QUICK=openQuick;
   // Prime the showcase with a static first frame; the visitor controls progression.
   setFeatured(0,false);
 })();
+
+</script>
+<script>
+/* Maison Dulce — brand story progressive enhancement */
+(()=>{
+  'use strict';
+  const story=document.querySelector('#historia.story-v6');
+  if(!story)return;
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  story.querySelectorAll('[data-story-cake]').forEach(button=>{
+    button.addEventListener('click',()=>{
+      const index=Number(button.dataset.storyCake);
+      if(typeof window.MAISON_OPEN_QUICK==='function')window.MAISON_OPEN_QUICK(index);
+      else document.querySelector('#coleccion')?.scrollIntoView({behavior:reduced?'auto':'smooth'});
+    });
+  });
+  if(reduced||!('IntersectionObserver' in window))return;
+  const nodes=[...story.querySelectorAll('[data-story-reveal]')];
+  const viewObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      entry.target.classList.add('is-visible');
+      viewObserver.unobserve(entry.target);
+    });
+  },{threshold:.08,rootMargin:'0px 0px 35px 0px'});
+  nodes.forEach(node=>viewObserver.observe(node));
+  story.classList.add('story-motion-ready');
+  let ticking=false,active=false;
+  const art=story.querySelector('.story-v6__art'),cake=story.querySelector('#storyMainCake');
+  const frame=()=>{
+    ticking=false;
+    if(!active||document.hidden||!art||!cake)return;
+    const box=art.getBoundingClientRect();
+    const progress=Math.max(-1,Math.min(1,(box.top+box.height*.5-innerHeight*.5)/Math.max(1,innerHeight)));
+    cake.style.setProperty('--story-cake-shift',(-progress*15).toFixed(2)+'px');
+  };
+  const onScroll=()=>{if(active&&!ticking){ticking=true;requestAnimationFrame(frame)}};
+  const motionObserver=new IntersectionObserver(([entry])=>{
+    active=entry.isIntersecting;
+    if(active)onScroll();else cake?.style.setProperty('--story-cake-shift','0px');
+  },{rootMargin:'110px'});
+  motionObserver.observe(art);
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+})();
+
 
 </script>
 </body></html>
