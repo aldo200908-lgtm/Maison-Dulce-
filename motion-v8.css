@@ -1,0 +1,108 @@
+/* MAISON DULCE 8.0 — motion direction, chapter navigation and fine interactions.
+   Progressive enhancement only: existing content and links always work. */
+
+:root { --v8-accent: #eeb293; --v8-wine:#702538; }
+
+/* The collection, story and order sections share a single cinematic visual rhythm. */
+.collection, .story-v6, .order-experience { isolation: isolate; }
+.collection-intro__title, .story-v6__lead h2, .order-lead h2,
+.collection-browse__heading { text-wrap: balance; }
+
+/* Editorial hairlines extend across the viewport as the chapter comes into view. */
+.collection__rail, .story-v6__topline, .order-topline, .footer-topline {
+  background-image:linear-gradient(90deg,transparent,rgba(242,175,149,.42),transparent);
+  background-position:50% 100%; background-size:0 1px; background-repeat:no-repeat;
+  transition:background-size 1.4s cubic-bezier(.2,.8,.18,1);
+}
+.v8-chapter-active .collection__rail, .v8-chapter-active .story-v6__topline,
+.v8-chapter-active .order-topline, .v8-chapter-active .footer-topline {background-size:100% 1px;}
+
+/* Headlines always remain readable; the reveal is a one-time animation only. */
+.v8-motion-on .v8-heading.v8-seen {
+  animation:v8-type-reveal .94s cubic-bezier(.19,.86,.16,1) both;
+}
+@keyframes v8-type-reveal {
+  from { clip-path:inset(0 0 95% 0); opacity:.5; }
+  to { clip-path:inset(0 0 0 0); opacity:1; }
+}
+
+/* Gentle parallax is composed using CSS translate so original 3D transforms remain intact. */
+.story-v6__art-disc { translate:0 var(--v8-disc-drift,0px); }
+.story-v6__art-outline { translate:0 var(--v8-type-drift,0px); }
+.collection-feature__watermark { translate:0 var(--v8-collection-drift,0px); }
+.order-experience::before { translate:0 var(--v8-order-drift,0px); }
+.order-panel__art img { translate:0 var(--v8-order-cake-drift,0px); }
+.story-v6__card-circle { translate:0 var(--v8-circle-drift,0px); }
+
+/* A discreet chapter compass: dots at rest, labels only on hover/focus. */
+.v8-chapters {
+  position:fixed; z-index:125; right:clamp(8px,1.25vw,18px); top:50%;
+  width:43px; transform:translate3d(10px,-50%,0); opacity:0; pointer-events:none;
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+  padding:12px 6px; border-radius:25px;
+  color:#f6ede5; background:rgba(58,18,31,.84); border:1px solid rgba(255,231,218,.18);
+  box-shadow:0 16px 36px rgba(51,15,23,.22); backdrop-filter:blur(12px);
+  transition:opacity .45s ease,transform .45s cubic-bezier(.2,.8,.2,1);
+}
+.v8-chapters.is-visible {opacity:1;transform:translate3d(0,-50%,0);pointer-events:auto}
+.v8-chapters__head {font-size:0;line-height:0;height:3px}
+.v8-chapters__link {
+  display:grid;place-items:center;position:relative;width:30px;height:32px;
+  border-radius:50%;text-decoration:none;color:#f6ede5;
+  transition:background .25s ease;
+}
+.v8-chapters__link:hover,.v8-chapters__link:focus-visible{background:rgba(255,244,229,.10)}
+.v8-chapters__link>span:last-child{
+  position:absolute;right:38px;top:50%;white-space:nowrap;pointer-events:none;
+  font-size:10px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:#fff7e9;background:rgba(58,18,31,.95);padding:11px 14px;border-radius:24px;
+  opacity:0;transform:translate3d(7px,-50%,0);
+  transition:opacity .22s ease,transform .22s ease;
+}
+.v8-chapters__link:hover>span:last-child,.v8-chapters__link:focus-visible>span:last-child{opacity:1;transform:translate3d(0,-50%,0)}
+.v8-chapters__dot{display:block;width:7px;height:7px;border-radius:50%;background:rgba(255,232,221,.35);box-shadow:0 0 0 0 rgba(240,177,149,.0);transition:background .25s,box-shadow .35s,transform .35s}
+.v8-chapters__link[aria-current="location"] .v8-chapters__dot{background:#f0b595;transform:scale(1.15);box-shadow:0 0 0 5px rgba(240,177,149,.15)}
+
+/* An extremely subtle lighting response: no filters on the photos themselves. */
+.collection-card__picture::before {
+  content:'';position:absolute;inset:0;z-index:3;pointer-events:none;
+  background:radial-gradient(290px circle at var(--v8-px,50%) var(--v8-py,50%),rgba(255,255,255,.20),transparent 72%);
+  opacity:0;transition:opacity .35s ease;
+}
+.collection-card:hover .collection-card__picture::before, .collection-card:focus-within .collection-card__picture::before{opacity:1}
+.story-v6__card-art::after {
+  content:'';position:absolute;inset:0;z-index:4;pointer-events:none;
+  background:radial-gradient(250px circle at var(--v8-px,50%) var(--v8-py,50%),rgba(255,241,218,.16),transparent 72%);
+  opacity:0;transition:opacity .35s ease;
+}
+.story-v6__card:hover .story-v6__card-art::after,.story-v6__card:focus-within .story-v6__card-art::after{opacity:1}
+.order-panel{position:relative;isolation:isolate}
+.order-panel::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:-1;
+  background:radial-gradient(330px circle at var(--v8-px,50%) var(--v8-py,50%),rgba(255,200,170,.085),transparent 77%);
+  opacity:0;transition:opacity .4s ease;
+}
+.order-panel:hover::after{opacity:1}
+
+/* Buttons remain clickable with mouse, touch, or keyboard. CSS translate is isolated
+   from existing transforms so the hover styles and hitboxes stay consistent. */
+.v8-magnetic {translate:var(--v8-mx,0px) var(--v8-my,0px);transition:translate .24s cubic-bezier(.2,.8,.2,1);}
+.v8-magnetic:active {scale:.97;}
+.v8-ripple-container{position:relative;overflow:hidden;isolation:isolate;}
+.v8-ripple{
+  position:absolute; pointer-events:none; z-index:10;
+  left:var(--v8-rx,50%);top:var(--v8-ry,50%);
+  width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.36);
+  translate:-50% -50%;scale:0;opacity:.65;animation:v8-ripple-expand .65s ease-out forwards;
+}
+@keyframes v8-ripple-expand {to {scale:17;opacity:0;}}
+.collection-card, .story-v6__card{transition:scale .34s cubic-bezier(.2,.8,.2,1);}
+.collection-card:active, .story-v6__card:active{scale:.995;}
+
+/* Preserve legibility and the original page behavior on phones and reduced motion. */
+@media(max-width:1100px), (hover:none), (pointer:coarse) {.v8-chapters{display:none!important}.v8-magnetic{translate:0 0!important}}
+@media(prefers-reduced-motion:reduce){
+  .v8-motion-on .v8-heading{clip-path:none!important;opacity:1!important;animation:none!important;transition:none!important}
+  .v8-chapters,.v8-magnetic,.v8-ripple,.collection-card,.story-v6__card{animation:none!important;transition:none!important;translate:0 0!important}
+  .story-v6__art-disc,.story-v6__art-outline,.collection-feature__watermark,.order-experience::before,.order-panel__art img,.story-v6__card-circle{translate:0 0!important}
+}
